@@ -102,7 +102,9 @@ def korisni_posilanya(update, context):
     content = read_content_from_file(link_file)
     update.callback_query.message.reply_text(content, reply_markup = reply )
 def mistcya_dlya_vstupnikiv(update, context):
-	  pass    
+    link_file = link + 'mistcya_dlya_vstupnikiv.txt'
+    content = read_content_from_file(link_file)
+    update.callback_query.message.reply_text(content, reply_markup = reply )
 def vikladachi(update, context):
     link_file = link + 'vikladachi.txt'
     content = read_content_from_file(link_file)
