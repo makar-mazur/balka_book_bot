@@ -117,6 +117,14 @@ def auditorii(update, context):
     pass
 def vipusniki(update, context):
     pass
+def proektne(update, context):
+    link_file = link + 'proektne.txt'
+    content = read_content_from_file(link_file)
+    update.callback_query.message.reply_text(content, reply_markup = reply )
+def dualna(update, context):
+    link_file = link + 'dualna.txt'
+    content = read_content_from_file(link_file)
+    update.callback_query.message.reply_text(content, reply_markup = reply )
 def main():
   
     updater = Updater("1600092846:AAHLA--iPlmFI8LMfp-U7PEL2NtmrGqUJJQ", use_context=True)
