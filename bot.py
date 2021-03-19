@@ -98,7 +98,9 @@ def rozrahunok_konkursnogo_balu(update, context):
 def etapi_vstupnoi_kompanii(update, context):
 	  pass
 def korisni_posilanya(update, context):
-	  pass
+    link_file = link + 'korisni_posilanya.txt'
+    content = read_content_from_file(link_file)
+    update.callback_query.message.reply_text(content, reply_markup = reply )
 def mistcya_dlya_vstupnikiv(update, context):
 	  pass    
 def vikladachi(update, context):
