@@ -22,7 +22,7 @@ import config
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, CommandHandler, MessageHandler, Filters
 import urllib.request
-link = 'https://makar-mazur.github.io/balka_book_bot/data/'
+link = 'https://makar-mazur.github.io/balka_book_bot/data/answers/'
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
