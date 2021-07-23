@@ -1,0 +1,142 @@
+import telebot
+import config
+
+from telebot import *
+
+bot = telebot.TeleBot(config.TOKEN)
+
+def log(message):
+    print("<!------!>")
+    from datetime import datetime
+    print(datetime.now())
+    print("Сообщение от {0} {1} (id = {2}) \n {3}".format(message.from_user.first_name,
+                                                              message.from_user.last_name,
+                                                              str(message.from_user.id), message.text))
+
+keyboard = telebot.types.ReplyKeyboardMarkup(True, False)
+
+#answers = ["online_store_working_hours.txt", "sending_orders.txt", "clarify_status_of_my_order.txt", "availability_or_cost_of_goods_on_site.txt", "confirm_order_payment.txt", "sending_orders_1.txt", "availability_or_cost_of_goods_on_site_1.txt"]
+
+txt1 = open("data/answers/" + "online_store_working_hours.txt", "rb")
+txt2 = open("data/answers/" + "sending_orders.txt", "rb")
+txt3 = open("data/answers/" + "sending_orders_1.txt", "rb")
+txt4 = open("data/answers/" + "clarify_status_of_my_order.txt", "rb")
+txt5 = open("data/answers/" + "availability_or_cost_of_goods_on_site.txt", "rb")
+txt6 = open("data/answers/" + "availability_or_cost_of_goods_on_site_1.txt", "rb")
+txt7 = open("data/answers/" + "confirm_order_payment.txt", "rb")
+
+lalala_time = ["Время работы интернет-магазина", "время работы интернет-магазина", "Время работы интернетмагазина", "Время работы интернет магазина", "время работы интернет магазина", "Время работы магазина", "время работы магазина", "Время работы", "время работы"]
+lalala_sending = ["Отправка заказов", "отправка заказов", "Отправка заказа", "отправка заказа"]
+lalala_status = ["Уточнить статус моего заказа", "уточнить статус моего заказа", "уточнить статус заказа", "отправка заказа", "Уточнить статус моих заказов", "уточнить статус моих заказов", "уточнить заказ", "Уточнить заказ"]
+lalala_goods = ["Наличие или стоимость товара на сайте", "Наличие", "наличие", "Наличие товара на сайте", "Уточнить статус моих заказов", "наличие товара на сайте", "Стоимость", "стоимость", "Стоимость товара на сайте", "стоимость товара на сайте", "Стоимость товара", "стоимость товара"]
+
+@bot.message_handler(commands = ["start"])
+def message_start(message):
+	bot.send_message(message.chat.id, "Здравствуйте! Я - бот Balka Book. Пропишите /help чтобы узнать что я могу", reply_markup = keyboard)
+
+@bot.message_handler(commands = ["help"])
+def message_help(message):
+	keyboard2 = telebot.types.InlineKeyboardMarkup(row_width = 1)
+	key1 = telebot.types.InlineKeyboardButton(text = "Время работы интернет-магазина", callback_data = "online_store_working_hours")
+	key2 = telebot.types.InlineKeyboardButton(text = "Отправка заказов", callback_data = "sending_orders")
+	key3 = telebot.types.InlineKeyboardButton(text = "Уточнить статус моего заказа", callback_data = "clarify_status_of_my_order")
+	key4 = telebot.types.InlineKeyboardButton(text = "Наличие или стоимость товара на сайте", callback_data = "availability_or_cost_of_goods_on_site")
+	key5 = telebot.types.InlineKeyboardButton(text = "Подтвердить оплату заказа", callback_data = "confirm_order_payment")
+	keyboard2.add(key1, key2, key3, key4, key5)
+	bot.send_message(message.chat.id, "Выберите интересующий Вас пункт из списка", reply_markup = keyboard2)
+
+@bot.message_handler(content_types=['text'])
+def lalala(message):
+    if message.text == lalala_time[0]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[1]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[2]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[3]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[4]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[5]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[6]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[7]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_time[8]:
+        bot.send_message(message.chat.id, txt1)
+    elif message.text == lalala_sending[0]:
+        bot.send_message(message.chat.id, txt2)
+    elif message.text == lalala_sending[1]:
+        bot.send_message(message.chat.id, txt2)
+    elif message.text == lalala_sending[2]:
+        bot.send_message(message.chat.id, txt2)
+    elif message.text == lalala_sending[3]:
+        bot.send_message(message.chat.id, txt2)
+    elif message.text == lalala_status[0]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_status[1]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_status[2]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_status[3]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_status[4]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_status[5]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_status[6]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_status[7]:
+        bot.send_message(message.chat.id, txt3)
+    elif message.text == lalala_goods[0]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[1]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[2]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[3]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[4]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[5]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[6]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[7]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[8]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[9]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[10]:
+        bot.send_message(message.chat.id, txt4)
+    elif message.text == lalala_goods[11]:
+        bot.send_message(message.chat.id, txt4)
+    else:
+         bot.send_message(message.chat.id, 'Видимо, Вы ввели неправильный запрос или команду. Пропишите /help для просмотра моих возможностей', reply_markup = keyboard)
+
+@bot.callback_query_handler(func = lambda call: True)
+def callback_worker(call):
+	if call.data == "online_store_working_hours":
+#		bot.send_message(call.message.chat.id, "ВРЕМЯ РАБОТЫ ИНТЕРНЕТ-МАГАЗИНА")
+		bot.send_message(call.message.chat.id, txt1)
+		#bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text = "ВРЕМЯ РАБОТЫ ИНТЕРНЕТ-МАГАЗИНА", reply_markup = keyboard3)
+	elif call.data == "sending_orders":
+#		bot.send_message(call.message.chat.id, "ОТПРАВКА ЗАКАЗОВ")
+		bot.send_message(call.message.chat.id, txt2.read() + txt3.read())
+		#bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text = "ОТПРАВКА ЗАКАЗОВ", reply_markup = keyboard3)
+	elif call.data == "clarify_status_of_my_order":
+#		bot.send_message(call.message.chat.id, "УТОЧНЕНИЕ СТАТУСА ВАШЕГО ЗАКАЗА")
+		bot.send_message(call.message.chat.id, txt4)
+		#bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text = "УТОЧНЕНИЕ СТАТУСА ВАШЕГО ЗАКАЗА", reply_markup = keyboard3)
+	elif call.data == "availability_or_cost_of_goods_on_site":
+#		bot.send_message(call.message.chat.id, "НАЛИЧИЕ ИЛИ СТОИМОСТЬ ТОВАРА НА САЙТЕ")
+		bot.send_message(call.message.chat.id, txt5.read() + txt6.read())
+		#bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text = "НАЛИЧИЕ ИЛИ СТОИМОСТЬ ТОВАРА НА САЙТЕ", reply_markup = keyboard3)
+	elif call.data == "confirm_order_payment":
+#		bot.send_message(call.message.chat.id, "ПОДТВЕРЖДЕНИЕ ОПЛАТЫ ЗАКАЗА")
+		bot.send_message(call.message.chat.id, txt7)
+		#bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text = "ПОДТВЕРЖДЕНИЕ ОПЛАТЫ ЗАКАЗА", reply_markup = keyboard3)
+
+bot.polling()
